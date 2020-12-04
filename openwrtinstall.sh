@@ -17,5 +17,5 @@ git clone --depth=1 https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk&&
 #广告过滤插件
 git clone https://github.com/rufengsuixing/luci-app-adguardhome &&
 git clone https://github.com/destan19/OpenAppFilter && #(luci-app-flowoffload shortcut-fe luci-app-sfe) 
-cd ../
+cd ../ &&
 chmod +x ./make.sh && ./make.sh
