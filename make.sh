@@ -4,6 +4,7 @@ cd $project_path/ &&
 git pull && 
 ./scripts/feeds update -a && 
 ./scripts/feeds install -a &&
+cd ./package/luci-app-onliner && git pull && cd ../../ &&
 #cd ./package/openwrt-packages && git pull && cd ../../ &&
 cd ./package/openwrt-passwall && git pull && cd ../../ &&
 cd ./package/luci-app-mentohust && git pull && cd ../../ &&
