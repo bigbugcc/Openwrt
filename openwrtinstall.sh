@@ -8,6 +8,8 @@ cd $project_path &&
 mv ./make.sh ./lede &&
 cd ./lede &&
 cd ./package &&
+#在线用户
+git clone https://github.com/rufengsuixing/luci-app-onliner &&
 #科学上网插件
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall &&
 git clone --depth=1 -b master https://github.com/vernesong/OpenClash &&
