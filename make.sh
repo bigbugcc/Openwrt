@@ -1,15 +1,27 @@
 #!/bin/bash
 project_path=$(cd `dirname $0`; pwd) &&
+
 cd $project_path/ &&
-git pull && 
+
+#更新源仓库
+git pull &&
+
 ./scripts/feeds update -a && 
 ./scripts/feeds install -a &&
-cd ./package/luci-app-onliner && git pull && cd ../../ &&
-#cd ./package/openwrt-packages && git pull && cd ../../ &&
-cd ./package/openwrt-passwall && git pull && cd ../../ &&
-cd ./package/luci-app-mentohust && git pull && cd ../../ &&
-cd ./package/MentoHUST-OpenWrt-ipk && git pull && cd ../../ && 
-cd ./package/luci-app-adguardhome && git pull && cd ../../ &&
-cd ./package/OpenAppFilter && git pull && cd ../../ &&
+
+
+#存放插件App的文件夹名（需放在package目录下）
+appsname="otherapp"
+
+folder="package/$appsname"
+
+ softfiles=$(ls $folder)
+ #更新appsname目录下的插件
+ for sfile in ${softfiles}
+ do 
+     echo "${sfile}:"
+     cd $folder/${sfile} && git pull && cd ../../../
+done
 make -j8 download V=s && 
+#make -j$(($(nproc) + 1)) V=s
 make -j1 V=s
