@@ -6,8 +6,8 @@ sudo apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git
 git clone https://github.com/coolsnowwolf/lede &&
 cd $project_path &&
 mv ./make.sh ./lede &&
-cd ./lede &&
-cd ./package &&
+
+cd ./lede/package/otherapp &&
 #在线用户
 git clone https://github.com/rufengsuixing/luci-app-onliner &&
 #科学上网插件
@@ -19,5 +19,5 @@ git clone --depth=1 https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk&&
 #广告过滤插件
 git clone https://github.com/rufengsuixing/luci-app-adguardhome &&
 git clone https://github.com/destan19/OpenAppFilter && #(luci-app-flowoffload shortcut-fe luci-app-sfe) 
-cd ../ &&
+cd ../../ &&
 chmod +x ./make.sh && ./make.sh
