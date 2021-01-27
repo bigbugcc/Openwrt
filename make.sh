@@ -22,6 +22,14 @@ folder="package/$appsname"
      echo "${sfile}:"
      cd $folder/${sfile} && git pull && cd ../../../
 done
+
 make -j8 download V=s && 
-#make -j$(($(nproc) + 1)) V=s
-make -j1 V=s
+
+if [ -d "bin" ];then
+		echo "*********************************************************************"
+		make -j$(($(nproc) + 1)) V=s
+	else
+		echo "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+		make -j1 V=s
+fi
+
