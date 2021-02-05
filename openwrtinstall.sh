@@ -19,7 +19,7 @@ if [ -f "$project_path/make.sh" ];then
     else
         if [ -f "$project_path/lede/make.sh" ];then 
                 echo "搜索到make.sh文件，正在执行！"
-                chmod +x "$(cd `dirname $0`; pwd)"/lede/make.sh 
+                chmod +x $project_path/lede/make.sh 
             else
                 echo "错误！不存在make.sh文件，将不会自动编译固件" 
     fi
