@@ -15,19 +15,24 @@ fi
 cd $project_path &&
 
 if [ -f "$project_path/make.sh" ];then 
-    mv ./make.sh ./lede
-else 
-	echo "错误！不存在make.sh文件，将不会自动编译固件" 
+        mv ./make.sh ./lede
+    else
+        if [ -f "$project_path/lede/make.sh" ];then 
+                echo "搜索到make.sh文件，正在执行！"
+                chmod +x "$(cd `dirname $0`; pwd)"/lede/make.sh 
+            else
+                echo "错误！不存在make.sh文件，将不会自动编译固件" 
+    fi
 fi
 
 #otherapp目录
-if [ -d "$project_path/package/otherapp" ];then
-    echo "***otherapp已存在***"
-else
-    mkdir "$project_path/package/otherapp"
+if [ -d "$project_path/lede/package/otherapp" ];then
+        echo "***otherapp已存在***"
+    else
+        mkdir "$project_path/lede/package/otherapp"
 fi
 
-cd ./lede/package/otherapp &&
+cd $project_path/lede/package/otherapp &&
 #在线用户
 git clone https://github.com/rufengsuixing/luci-app-onliner &&
 #科学上网插件
@@ -42,5 +47,4 @@ git clone https://github.com/destan19/OpenAppFilter && #(luci-app-flowoffload sh
 #Lienol App
 git clone https://github.com/Lienol/openwrt-package &&
 
-cd ../../ &&
-chmod +x ./make.sh && ./make.sh
+cd ../../ && "$(cd `dirname $0`; pwd)"/make.sh
