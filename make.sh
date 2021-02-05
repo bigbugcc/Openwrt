@@ -26,10 +26,10 @@ done
 make -j8 download V=s && 
 
 if [ -d "bin" ];then
-		echo "*********************************************************************"
+		echo "*****启用多线程编译*****"
 		make -j$(($(nproc) + 1)) V=s
 	else
-		echo "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+		echo "*****首次编译单线程*****"
 		make -j1 V=s
 fi
 
