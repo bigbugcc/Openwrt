@@ -38,11 +38,13 @@ if [ -d "$project_path/lede/package/otherapp" ];then
 fi
 echo "---------- $(cd `dirname $0`; pwd)"
 
-cd lede/package/lean 
+cd $project_path/lede/package/lean 
 
 rm -rf luci-theme-argon 
  
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git  
+
+cd ../../../
 
 if [ -f "$project_path/make.sh" ];then 
 		chmod +x ./make.sh
