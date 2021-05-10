@@ -8,11 +8,12 @@ sudo apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git
 if [ ! -d "$project_path/lede" ];then
     echo "***正在Clone源码***"
     git clone https://github.com/coolsnowwolf/lede
+    sleep 1s
 else
     echo "***lede源码目录已存在***"
 fi
 
-cd $project_path &&
+cd $project_path
 
 #otherapp插件目录
 if [ -d "$project_path/lede/package/otherapp" ];then
@@ -47,7 +48,8 @@ git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git
 cd ../../../
 
 if [ -f "$project_path/make.sh" ];then 
-		chmod +x ./make.sh
+	chmod +x ./make.sh
+	mv ./configs ./lede
     	mv ./make.sh ./lede
     	$project_path/lede/make.sh
     else
