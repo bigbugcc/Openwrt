@@ -27,7 +27,7 @@ done
 #配置文件目录
 softfiles=$(ls $project_path/configs)
 
-if [ -d "bin" ];then
+if [ ! -d "$project_path/bin" ];then
 		echo "*****运行首次编译*****"
           cat $project_path/configs/empty.config > $project_path/.config
 		  make -j8 download V=s
