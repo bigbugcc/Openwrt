@@ -12,7 +12,7 @@ x86
 NanoPi R4S   
 Raspberry Pi3 B+   
 Raspberry Pi4    
-
+Orange Pi R1 Plus  
 ---
 ## 插件
 Passwall   

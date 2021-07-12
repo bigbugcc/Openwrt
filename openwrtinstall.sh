@@ -4,16 +4,14 @@ project_path=$(cd `dirname $0`; pwd)
 #编译环境
 sudo apt-get -y install build-essential asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 python2.7 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler g++-multilib antlr3 gperf wget curl swig rsync &&
 
+cd $project_path
 #拉取Lean大源码
 if [ ! -d "./lede" ];then
     echo "***正在Clone源码***"
-    git clone https://github.com/coolsnowwolf/lede
-    sleep 1s
+    git clone https://github.com/coolsnowwolf/lede $project_path/lede
 else
     echo "***lede源码目录已存在***"
 fi
-
-cd $project_path
 
 #otherapp插件目录
 if [ -d "$project_path/lede/package/otherapp" ];then
@@ -40,24 +38,20 @@ if [ -d "$project_path/lede/package/otherapp" ];then
 		git clone https://github.com/kongfl888/minieap.git
 		git clone https://github.com/ysc3839/luci-proto-minieap.git
 		git clone https://github.com/kongfl888/luci-app-minieap.git
-		cd ../../../
-		echo "---------- $(cd `dirname $0`; pwd)"
+		cd $project_path
 fi
-echo "---------- $(cd `dirname $0`; pwd)"
 
-cd $project_path/lede/package/lean 
+cd $project_path/lede/package/lean && rm -rf luci-theme-argon 
 
-rm -rf luci-theme-argon 
- 
 git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git  
 
-cd ../../../
+cd $project_path
 
 if [ -f "$project_path/make.sh" ];then 
 	chmod +x ./make.sh
 	mv ./configs ./lede
-    	mv ./make.sh ./lede
-    	$project_path/lede/make.sh
+	mv ./make.sh ./lede
+    $project_path/lede/make.sh
     else
         if [ -f "$project_path/lede/make.sh" ];then 
                 echo "搜索到make.sh文件，正在执行！"
