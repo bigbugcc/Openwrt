@@ -20,30 +20,32 @@ if [ -d "$project_path/lede/package/otherapp" ];then
         mkdir "$project_path/lede/package/otherapp"
         cd $project_path/lede/package/otherapp
 		#在线用户
-		git clone https://github.com/rufengsuixing/luci-app-onliner
+		# git clone https://github.com/rufengsuixing/luci-app-onliner
 		#科学上网插件
-		git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall
-		git clone --depth=1 -b master https://github.com/vernesong/OpenClash
+		git clone https://github.com/xiaorouji/openwrt-passwall
+		#git clone --depth=1 -b master https://github.com/vernesong/OpenClash
 		#大学生必备插件
 		git clone --depth=1 https://github.com/BoringCat/luci-app-mentohust
 		git clone --depth=1 https://github.com/KyleRicardo/MentoHUST-OpenWrt-ipk 
 		#广告过滤插件
-		git clone https://github.com/rufengsuixing/luci-app-adguardhome 
+		# git clone https://github.com/rufengsuixing/luci-app-adguardhome 
 		git clone https://github.com/destan19/OpenAppFilter  #(luci-app-flowoffload shortcut-fe luci-app-sfe)
+
+		git clone https://github.com/zzsj0928/luci-app-pushbot
 		#Lienol App
-		git clone https://github.com/Lienol/openwrt-package
+		# git clone https://github.com/Lienol/openwrt-package
 
 		# minieap
-		git clone https://github.com/ysc3839/openwrt-minieap.git
-		git clone https://github.com/kongfl888/minieap.git
-		git clone https://github.com/ysc3839/luci-proto-minieap.git
-		git clone https://github.com/kongfl888/luci-app-minieap.git
+		# git clone https://github.com/ysc3839/openwrt-minieap.git
+		# git clone https://github.com/kongfl888/minieap.git
+		# git clone https://github.com/ysc3839/luci-proto-minieap.git
+		# git clone https://github.com/kongfl888/luci-app-minieap.git
 		cd $project_path
 fi
 
 cd $project_path/lede/package/lean && rm -rf luci-theme-argon 
 
-git clone -b 18.06 https://github.com/jerrykuku/luci-theme-argon.git  
+git clone https://github.com/jerrykuku/luci-theme-argon.git  
 
 cd $project_path
 
