@@ -26,6 +26,10 @@ echo "***修改配置文件***"
 ## 替换默认主题luci-theme-argon
 curl https://raw.githubusercontent.com/bigbugcc/openwrts/master/configure.sh | bash
 
+echo "***下载配置文件***"
+## 配置文件仓库 https://github.com/bigbugcc/OpenWrts/tree/main/configs
+svn export https://github.com/bigbugcc/OpenWrts/trunk/configs 
+
 echo "***更新安装组件***"
 ./scripts/feeds update -a && ./scripts/feeds install -a
 
@@ -33,7 +37,6 @@ cd $project_path
 
 if [ -f "$project_path/make.sh" ];then 
 	chmod +x ./make.sh
-	mv ./configs ./lede
 	mv ./make.sh ./lede
     $project_path/lede/make.sh
     else
