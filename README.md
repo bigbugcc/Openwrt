@@ -5,48 +5,75 @@
 3. 自动编译固件
 4. 自动替换Openwrt的Them   
 5. 已经加载好配置模板一键编译多版本固件
+6. 自带更新脚本`make.sh`方便管理
 
 ---
-## 固件配置文件(configs 若不需要删除configs目录下的配置文件即可)
+## 脚本控制台
+![主界面](./assets/display.png)
+
+## 使用
+```
+# 首次运行后稍等片刻
+chmod +x ./openwrtinstall.sh
+./openwrtinstall.sh
+
+# 二次运行直接进入lede目录
+./make.sh
+# 
+```
+
+## 菜单说明
+1. x86_64
+2. x86_64Lite
+3. Raspberry Pi4
+4. Raspberry Pi3B+
+5. Rockchip(R4S、R2S、OPiR1Plus)
+6. Use the previous .config to compile  (二次编译同一个固件)
+7. Open OpenWRT Make-Menu               (打开OpenWRT配置菜单)
+8. Clean Compile Cahe                   (清除OpenWRT编译缓存)
+
+## 固件支持
 x86   
+x86Lite  
 NanoPi R4S   
+NanoPi R2S   
 Raspberry Pi3 B+   
 Raspberry Pi4    
 Orange Pi R1 Plus  
 ---
-## 插件
-Passwall   
-Adguardhome   
-OpenAppFilter   
-MentoHUST   
-OpenAppFilter   
-Onliner   
-OpenWrt-package  (经典程序包)   
 
-## 脚本运行
-```
-chmod +x ./openwrtinstall.sh
-./openwrtinstall.sh
-```
+## 插件
+- PassWall / SSR Plus
+- AdGuard Home
+- Mentohust
+- ~~luci-app-vssr~~   
+- luci-adbyby-plus
+- luci-app-unblockmusic
+- luci-app-ddns
+- luci-app-pushbot (全能推送)
+- luci-app-onliner
+- luci-app-ttyd
+- luci-app-turboacc
+- luci-app-upnp
+- luci-app-netdata
+- luci-usb-printer
+- luci-app-nps
+- luci-app-frpc
+- luci-app-n2n
+- luci-app-syncdial (多播插件)
+- luci-app-turboacc
+- luci-app-kms  
+- luci-app-docker   
+- luci-app-serverchan   
+- luci-app-control-timewol (定时wol唤醒)   
+- luci-app-aliyundrive-webdav (阿里云盘)  
+- luci-app-filebrowser   
+- luci-app-nfs   
 
 ## 二次编译
 直接运行lede目录下的make.sh(一键更新openwrt源码及插件库)即可，适合萌新。
 
-### 注意事项
-编译过程请务必全程科学上网,如需修改配置文件请make menuconfig
-```
-# 进入lede根目录
-cd lede/
-
-# 加载需要修改的配置文件
-cat configs/x86.config > ./.config
-
-# 打开配置菜单
-make menuconfig
-
-# 最后修改完成save到configs/x86.config即可
-```
-
-## 关于第一次编译的心得
-建议第一次编译请不要添加任何app选项（单核速度太慢）
-请第二次再添加插件和组件，然后编译时火力全开（测试目前还没有发现因为多线程导致的错误！）
+## 注意事项
+1. 编译过程请务必全程科学上网,如需修改配置文件请make menuconfig   
+2. `make.sh`文件每次启动都会自动更新源码以及所有的插件
+(自行添加的插件需放入`package\otherapp`目录下)

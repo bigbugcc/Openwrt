@@ -24,6 +24,23 @@ done
 cd $project_path
 }
 
+##清除编译缓存
+function cleanCache {
+ make clean && make dirclean
+}
+
+function compileUp {
+ make defconfig
+ make -j8 download V=s && make -j4 V=s
+ break
+}
+
+function openMenu {
+ make defconfig && make menuconfig
+ break
+}
+
+
 function x86_64 {
  cat configs/x86_64.config > .config && makes
 }
@@ -72,8 +89,8 @@ function menu {
        oMP     ^/o@P^;:::---..                 |_|                              
     .dMMM    .o@^ ^;::---...                                                     
    dMMMMMMM@^`       `^^^^                                         
-  YMMMUP^  
-   ^^
+  YMMMUP^                 
+   ^^ ------------------------ https://github.com/bigbugcc -----------------------------
     "
  echo -e "\t\t Openwrt Compile Menu\n"
  echo -e "\t1. x86_64"
@@ -81,6 +98,9 @@ function menu {
  echo -e "\t3. Raspberry Pi4"
  echo -e "\t4. Raspberry Pi3B+"
  echo -e "\t5. Rockchip(R4S、R2S、OPiR1Plus)"
+ echo -e "\t6. Use the previous .config to compile"
+ echo -e "\t7. Open OpenWRT Make-Menu"
+ echo -e "\t8. Clean Compile Cahe"
  echo -e "\t0. Exit menu\n\n"
  echo -en "\t\tEnter an option: "
  read option
@@ -102,6 +122,12 @@ do
  Raspberry3 ;;
  5)
  Rockchip ;;
+ 6)
+ compileUp ;;
+ 7)
+ openMenu ;;
+ 8)
+ cleanCache ;;
  *)
  clear
  echo "Sorry, wrong selection" ;;
