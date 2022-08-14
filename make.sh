@@ -1,14 +1,15 @@
 #!/bin/bash
 project_path=$(cd `dirname $0`; pwd)
-
 cd $project_path
-echo "---------------$project_path -----------------------"
 
-#更新源仓库
-git pull
+# 更新源码
+function updatesource {
+ echo -e "====== 更新源码以及组件 ======"
+ git pull
 ./scripts/feeds update -a
 ./scripts/feeds install -a
 
+#更新App插件
 #存放插件App的文件夹（需放在package目录下otherapp）
 folder="$project_path/package/otherapp"
 
@@ -20,26 +21,92 @@ do
      echo "${sfile}:"
      cd $folder/${sfile} && git pull
 done
-
 cd $project_path
+}
 
-#配置文件目录
-softfiles=$(ls $project_path/configs)
+function x86_64 {
+ cat configs/x86_64.config > .config && makes
+}
 
-echo "----------当前目录 $(cd `dirname $0`; pwd)  ---------------"
-if [ ! -d "$project_path/bin" ];then
-		echo "*****运行首次编译*****"
-          cat $project_path/configs/empty.config > .config
-		make -j8 download V=s
-		make -j1 V=s
-fi
+function x86_64Lite {
+ cat configs/x86_64Lite.config > .config
+ cat configs/External_Lite.config >> .config
+ make defconfig
+ make -j8 download V=s && make -j4 V=s
+ break
+}
 
-#编译configs目录下的所有配置
-for sfile in ${softfiles}
-do 
-    echo "========== 开始编译: ${sfile} =========="
-     cat $project_path/configs/$sfile  > $project_path/.config
-     make -j8 download V=s 
-	echo "*****启用多线程编译*****"
-	make -j$(($(nproc) + 1)) V=s
+function Raspberry4 {
+ cat configs/RPi4.config > .config && makes
+}
+
+function Raspberry3 {
+ cat configs/RPi3B.config > .config && makes
+}
+
+function Rockchip {
+ cat configs/Rockchip.config > .config && makes
+}
+
+## 通用配置
+function makes {
+ cat configs/External.config >> .config && make defconfig
+ make -j8 download V=s && make -j4 V=s
+ break
+}
+
+function menu {
+ clear
+ echo
+ echo -e "
+                                           _.oo.
+                   _.u[[/;:,.         .odMMMMMM'
+                .o888UU[[[/;:-.  .o@P^    MMM^
+               oN88888UU[[[/;::-.        dP^  
+              dNMMNN888UU[[[/;:--.   .o@P^         
+            ,MMMMMMN888UU[[/;::-. o@^         
+             NNM[ BigBugcc ][/.o@P^        ___              __      _____ _____         
+             888888888UU[[[/o@^-..        / _ \ _ __  ___ _ \ \    / / _ \_   _|                                 
+            oI8888UU[[[/o@P^:--..        | (_) | '_ \/ -_) ' \ \/\/ /|   / | |
+         .@^  YUU[[[/o@^;::---..          \___/| .__/\___|_||_\_/\_/ |_|_\ |_|  
+       oMP     ^/o@P^;:::---..                 |_|                              
+    .dMMM    .o@^ ^;::---...                                                     
+   dMMMMMMM@^`       `^^^^                                         
+  YMMMUP^  
+   ^^
+    "
+ echo -e "\t\t Openwrt Compile Menu\n"
+ echo -e "\t1. x86_64"
+ echo -e "\t2. x86_64Lite"
+ echo -e "\t3. Raspberry Pi4"
+ echo -e "\t4. Raspberry Pi3B+"
+ echo -e "\t5. Rockchip(R4S、R2S、OPiR1Plus)"
+ echo -e "\t0. Exit menu\n\n"
+ echo -en "\t\tEnter an option: "
+ read option
+}
+updatesource
+while [ 1 ]
+do
+ menu
+ case $option in
+ 0)
+ break ;;
+ 1)
+ x86_64 ;;
+ 2)
+ x86_64Lite ;;
+ 3)
+ Raspberry4 ;;
+ 4)
+ Raspberry3 ;;
+ 5)
+ Rockchip ;;
+ *)
+ clear
+ echo "Sorry, wrong selection" ;;
+ esac
+ echo -en "\n\n\t\t\tHit any key to continue"
+ read -n 1 line
 done
+clear
