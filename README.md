@@ -8,6 +8,8 @@
 6. 自带更新脚本`make.sh`方便管理
 
 ---
+## WSL2子系统编译
+[<a herf="https://bughero.net/archives/rpi4_s3.html"> WSL编译教程 </a>]
 ## 脚本控制台
 ![主界面](./assets/display.png)
 
