@@ -43,10 +43,6 @@ echo "***下载配置文件***"
 ## 配置文件仓库 https://github.com/bigbugcc/OpenWrts/tree/main/configs
 svn_export "main" "configs" "configs" https://github.com/bigbugcc/openwrts 
 
-echo "***更新安装组件***"
-./scripts/feeds update -a && ./scripts/feeds install -a
-
-
 cd $project_path
 
 if [ -f "$project_path/make.sh" ];then 
