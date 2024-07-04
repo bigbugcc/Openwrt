@@ -32,6 +32,7 @@ function cleanCache {
 function compileUp {
  make defconfig
  make -j8 download V=s && make -j4 V=s
+ echo "========== 编译结束 =========="
  break
 }
 
@@ -50,6 +51,7 @@ function x86_64Lite {
  cat configs/LuciApp_Lite.config >> .config
  make defconfig
  make -j8 download V=s && make -j4 V=s
+ echo "========== 编译结束 =========="
  break
 }
 
@@ -69,6 +71,7 @@ function Rockchip {
 function makes {
  cat configs/LuciApp.config >> .config && make defconfig
  make -j8 download V=s && make -j4 V=s
+ echo "========== 编译结束 =========="
  break
 }
 

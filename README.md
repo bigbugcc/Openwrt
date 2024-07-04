@@ -14,7 +14,13 @@
 ## 使用
 👉 [WSL编译教程 RPi4](https://bughero.net/archives/rpi4_s3.html)
 ```
-# 首次运行后稍等片刻
+# 请不要在root用户下执行！！！
+sudo mkdir -p /workdir && cd /workdir
+
+# 设置文件用户组
+sudo chown $USER:$GROUPS /workdir
+
+# 执行权限
 chmod +x ./openwrtinstall.sh
 ./openwrtinstall.sh
 
