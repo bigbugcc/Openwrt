@@ -46,8 +46,8 @@ function x86_64 {
 }
 
 function x86_64Lite {
- cat configs/x86_64Lite.config > .config
- cat configs/External_Lite.config >> .config
+ cat configs/x86_64.config > .config
+ cat configs/LuciApp_Lite.config >> .config
  make defconfig
  make -j8 download V=s && make -j4 V=s
  break
@@ -67,7 +67,7 @@ function Rockchip {
 
 ## 通用配置
 function makes {
- cat configs/External.config >> .config && make defconfig
+ cat configs/LuciApp.config >> .config && make defconfig
  make -j8 download V=s && make -j4 V=s
  break
 }
