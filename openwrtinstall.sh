@@ -2,6 +2,19 @@
 project_path=$(cd `dirname $0`; pwd)
 lede_path="$project_path/lede"
 
+svn_export() {
+	# 参数1是分支名, 参数2是子目录, 参数3是目标目录, 参数4仓库地址
+	trap 'rm -rf "$TMP_DIR"' 0 1 2 3
+	TMP_DIR="$(mktemp -d)" || exit 1
+	[ -d "$3" ] || mkdir -p "$3"
+	TGT_DIR="$(cd "$3"; pwd)"
+	cd "$TMP_DIR" && \
+	git init >/dev/null 2>&1 && \
+	git remote add -f origin "$4" >/dev/null 2>&1 && \
+	git checkout "remotes/origin/$1" -- "$2" && \
+	cd "$2" && cp -a . "$TGT_DIR/"
+}
+
 #编译环境
 sudo apt-get install $(curl -fsSL https://raw.githubusercontent.com/bigbugcc/openwrts/master/openwrt-env)
 
@@ -28,10 +41,11 @@ curl https://raw.githubusercontent.com/bigbugcc/openwrts/master/configure.sh | b
 
 echo "***下载配置文件***"
 ## 配置文件仓库 https://github.com/bigbugcc/OpenWrts/tree/main/configs
-svn export https://github.com/bigbugcc/OpenWrts/trunk/configs 
+svn_export "main" "configs" "configs" https://github.com/bigbugcc/openwrts 
 
 echo "***更新安装组件***"
 ./scripts/feeds update -a && ./scripts/feeds install -a
+
 
 cd $project_path
 
