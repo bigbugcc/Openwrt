@@ -9,7 +9,7 @@ cd $project_path
 #拉取Lean大源码
 if [ ! -d "./lede" ];then
     echo "***正在Clone源码***"
-    git clone https://github.com/coolsnowwolf/lede $project_path/lede
+    git clone --depth 1 https://github.com/coolsnowwolf/lede $project_path/lede
 else
     echo "***lede源码目录已存在***"
 fi
