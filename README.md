@@ -6,13 +6,15 @@
 4. 自动替换Openwrt的Them   
 5. 已经加载好配置模板一键编译多版本固件
 6. 自带更新脚本`make.sh`方便管理
+7. 自带两种编译配置方案(简洁和常用插件版)
 
 ---
 ## 脚本控制台
 ![主界面](./assets/display.png)
 
 ## 使用
-👉 [WSL编译教程 RPi4](https://bughero.net/archives/rpi4_s3.html)
+👉 [WSL编译教程 RPi4](https://bughero.net/archives/rpi4_s3.html)   
+- 编译脚本引用[Openwrts](https://github.com/bigbugcc/OpenWrts/tree/main/configs)中的配置
 ```
 # 请不要在root用户下执行！！！
 sudo mkdir -p /workdir && cd /workdir
@@ -26,24 +28,24 @@ chmod +x ./openwrtinstall.sh
 
 # 二次运行直接进入lede目录
 ./make.sh
-# 
 ```
 
 ## 菜单说明
 1. x86_64
-2. x86_64Lite
-3. Raspberry Pi4
-4. Raspberry Pi3B+
-5. Rockchip(R4S、R2S、OPiR1Plus)
-6. Use the previous .config to compile  (二次编译同一个固件)
-7. Open OpenWRT Make-Menu               (打开OpenWRT配置菜单)
-8. Clean Compile Cahe                   (清除OpenWRT编译缓存)
+2. Raspberry Pi4
+3. Raspberry Pi3B+
+4. Rockchip(R68S、R2S、R4S、R5C、R5S、OPiR1Plus)
+5. Use the previous .config to compile  (使用当前配置文件编译)
+6. Open OpenWRT Make-Menu               (打开OpenWRT配置菜单)
+7. Clean Compile Cahe                   (清除OpenWRT编译缓存)
 
 ## 固件支持
 x86   
 x86Lite  
 NanoPi R4S   
 NanoPi R2S   
+FastRhino R68S   
+FriendlyARM NanoPi R5C | R5S   
 Raspberry Pi3 B+   
 Raspberry Pi4    
 Orange Pi R1 Plus  
