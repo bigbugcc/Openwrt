@@ -137,4 +137,3 @@ while [ 1 ]; do
    echo -en "\n\n\t\t\tHit any key to continue"
    read -n 1 line
 done
-clear
