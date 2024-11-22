@@ -38,12 +38,12 @@ function openMenu {
 
 # 通用配置
 function defconfig {
-   cat configs/LuciApp.config >>.config
+   cat configs/luci/Standard.config >>.config
 }
 
 # 轻量配置
 function defconfigLite {
-   cat configs/LuciApp_Lite.config >>.config
+   cat configs/luci/Lite.config >>.config
 }
 
 # 编译
