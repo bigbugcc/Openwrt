@@ -16,7 +16,7 @@ svn_export() {
 }
 
 #编译环境
-sudo apt-get install $(curl -fsSL https://raw.githubusercontent.com/bigbugcc/openwrts/master/openwrt-env)
+sudo apt-get install $(curl -fsSL https://raw.githubusercontent.com/bigbugcc/openwrts/master/openwrt-env) -y
 
 cd $project_path
 #拉取Lean大源码
