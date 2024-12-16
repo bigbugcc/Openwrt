@@ -87,12 +87,13 @@ function menu {
     "
    echo -e "\t\t Openwrt Compile Menu\n"
    echo -e "\t1. x86_64"
-   echo -e "\t2. Raspberry Pi4"
-   echo -e "\t3. Raspberry Pi3B+"
-   echo -e "\t4. Rockchip(R68S、R2S、R4S、R5C、R5S、OPiR1Plus)"
-   echo -e "\t5. Use the previous .config to compile"
-   echo -e "\t6. Open OpenWRT Make-Menu"
-   echo -e "\t7. Clean Compile Cahe"
+   echo -e "\t2. Raspberry Pi5"
+   echo -e "\t3. Raspberry Pi4"
+   echo -e "\t4. Raspberry Pi3B+"
+   echo -e "\t5. Rockchip(R68S、R2S、R4S、R5C、R5S、OPiR1Plus)"
+   echo -e "\t6. Use the previous .config to compile"
+   echo -e "\t7. Open OpenWRT Make-Menu"
+   echo -e "\t8. Clean Compile Cahe"
    echo -e "\t0. Exit menu\n\n"
    echo -en "\t\tEnter an option: "
    read option
@@ -107,17 +108,19 @@ while [ 1 ]; do
    1)
       cat configs/x86_64.config >.config;;
    2)
-      cat configs/RPi4.config >.config;;
+      cat configs/RPi5.config >.config;;
    3)
-      cat configs/RPi3B.config >.config;;
+      cat configs/RPi4.config >.config;;
    4)
-      cat configs/Rockchip.config >.config;;
+      cat configs/RPi3B.config >.config;;
    5)
+      cat configs/Rockchip.config >.config;;
+   6)
       makes
       break;;
-   6)
-      openMenu;;
    7)
+      openMenu;;
+   8)
       cleanCache;;
    *)
       clear
