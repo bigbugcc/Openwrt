@@ -30,13 +30,12 @@ fi
 cd $project_path/lede
 
 echo "***插件下载***"
-##添加常用插件
+## 添加常用插件：OpenAppFilter、luci-app-pushbot、MentoHUST、UnblockNeteaseMusic、OpenClash
 curl https://raw.githubusercontent.com/bigbugcc/openwrts/master/package.sh | bash
 
 echo "***修改配置文件***"
 ## 修改默认IP为192.168.10.1
-## 添加Hello World、luci-theme-infinityfreedom、passwall
-## 替换默认主题luci-theme-argon
+## 添加 Hello World、passwall2、iStore 应用商店 feeds
 curl https://raw.githubusercontent.com/bigbugcc/openwrts/master/configure.sh | bash
 
 echo "***下载配置文件***"
